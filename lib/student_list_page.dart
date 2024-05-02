@@ -57,11 +57,12 @@ class _studentsListState extends State<studentsList> {
     );
   }
 
-  final hostel = "http://192.168.1.8:8000/students";
+  final hostel = "http://192.168.1.11:8000/students";
   final home = "http://192.168.29.117:8000/students";
+  final _vercel = "https://student-registration-api-tau.vercel.app/students";
 
   Future<List<StudentModel?>> getData() async {
-    final response = await http.get(Uri.parse(home));
+    final response = await http.get(Uri.parse(_vercel));
     var data =  jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
@@ -78,8 +79,9 @@ class _studentsListState extends State<studentsList> {
 
   Future<void> deletestudent(String id) async {
     final deletehome = "http://192.168.29.117:8000/delstudents/${id}";
+    final _delvercel = "https://student-registration-api-tau.vercel.app/students/${id}";
     try {
-      final response = await http.delete(Uri.parse(deletehome));
+      final response = await http.delete(Uri.parse(_delvercel));
       if (response.statusCode == 200) {
         print('Item deleted successfully');
       } else {

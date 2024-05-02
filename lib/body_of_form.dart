@@ -27,8 +27,9 @@ class FormBody extends StatefulWidget {
 
 class _FormBodyState extends State<FormBody> {
 
-  final hostel = "http://192.168.1.8:8000/student";
-  final home = "http://192.168.29.117:8000/student";
+  final hostel = "http://192.168.1.15:8000/student";
+  final home = "http://192.168.29.15:8000/student";
+  final _vercel = "https://student-registration-api-tau.vercel.app/student";
   StudentModel? _studentModel;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -39,7 +40,7 @@ class _FormBodyState extends State<FormBody> {
   Future<StudentModel?> submitData() async {
     try {
       var response = await http.post(
-        Uri.parse(home),
+        Uri.parse(_vercel),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           'name': nameController.text,
